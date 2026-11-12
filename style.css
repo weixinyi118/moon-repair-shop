@@ -1,0 +1,59 @@
+@font-face{font-family:Instrument Serif;src:url(./fonts/instrument-serif.woff2) format('woff2');font-display:swap}
+@font-face{font-family:Instrument Serif;src:url(./fonts/instrument-serif-italic.woff2) format('woff2');font-style:italic;font-display:swap}
+:root{color-scheme:dark;--paper:#f7f0e6;--gold:#efd3a3;--faint:#b5b1c0;--line:#e9d4af35;--edge:clamp(22px,4.35vw,76px);--shell:#101324;--surface:#17192bc7;font-family:system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--shell);color:var(--paper)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+button:disabled{cursor:default}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+[hidden]{display:none!important}
+.symbols{position:absolute;width:0;height:0;overflow:hidden}
+.exhibit{position:relative;isolation:isolate;width:100%;height:100dvh;min-height:380px;overflow:hidden}
+.stage{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 67% 47%,#35304b,#101324 74%)}
+.stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.stage canvas:active{cursor:grabbing}
+.stage canvas.is-target{cursor:pointer}
+.frame{position:absolute;inset:18px;border:1px solid #dfc5ae24;pointer-events:none;z-index:-1}
+.masthead,.footer{position:absolute;left:var(--edge);right:var(--edge);display:flex;align-items:center;justify-content:space-between}
+.masthead{top:38px}
+.wordmark{display:flex;gap:12px;align-items:center;color:var(--gold);font-size:10px;font-weight:600;letter-spacing:.24em;white-space:nowrap}
+.seal{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line);border-radius:50%}
+svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.seal svg{width:22px;height:22px}
+.tools{display:flex;gap:8px}
+.tools button,.scene-label,.collection{min-height:38px;border:1px solid var(--line);background:var(--surface);border-radius:30px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 10px;color:var(--gold);transition:border-color .25s,background .25s,color .25s}
+.tools button{min-width:40px}
+.tools button:first-child{padding:0 14px;font-size:11px;letter-spacing:.05em}
+.tools button:hover,.scene-label:hover,.collection:hover{border-color:var(--gold);background:#282437}
+.tools button svg,.collection svg,.scene-label svg{width:17px;height:17px}
+.intro{position:absolute;left:var(--edge);top:48.5%;transform:translateY(-50%);width:min(37vw,470px);pointer-events:none;transition:opacity .4s}
+.eyebrow{display:flex;align-items:center;gap:13px;margin:0 0 22px;color:var(--gold);font-size:11px;letter-spacing:.34em}
+.eyebrow>span:first-child{width:26px;height:1px;background:var(--gold);opacity:.65}
+h1{margin:0;font-family:Instrument Serif,Georgia,serif;font-weight:400;font-size:clamp(68px,7.05vw,134px);letter-spacing:-.025em;line-height:.89;color:var(--paper);white-space:nowrap}
+h1 em{display:block;color:var(--gold);font-weight:400;line-height:1;padding-bottom:.055em}
+.verse{color:var(--faint);font-size:14px;line-height:1.7;max-width:245px;margin:20px 0 28px}
+.mend{display:inline-flex;align-items:center;gap:10px;pointer-events:auto;padding:0 16px;min-height:45px;background:#eed1a1;color:#282031;border:1px solid #f3d7aa;border-radius:4px;font-size:12px;font-weight:650;letter-spacing:.018em;transition:background .25s,transform .25s}
+.mend svg{width:16px;height:16px}.mend .arrow{margin-left:12px}.mend:hover:not(:disabled){background:#fae8c6;transform:translateY(-2px)}.mend:disabled{opacity:.78}
+.footer{bottom:35px;padding-top:15px;border-top:1px solid var(--line);gap:16px}
+.gestures{display:flex;gap:24px;color:var(--faint);font-size:11px;letter-spacing:.04em;pointer-events:none}
+.gestures>span{display:flex;align-items:center;gap:8px}.gestures svg{color:var(--gold);width:16px;height:16px}
+.touch{display:none}
+.collection{padding:0 13px;white-space:nowrap;font-size:11px;letter-spacing:.05em}
+.collection output{min-width:32px;text-align:center;color:var(--paper);font-variant-numeric:tabular-nums;margin-left:5px}
+.scene-label{position:absolute;transform:translateY(-50%);font-size:11px;letter-spacing:.055em;padding:0 12px;white-space:nowrap}
+.scene-label::before{content:"";position:absolute;width:24px;left:-25px;top:50%;border-top:1px solid #efd3a388;pointer-events:none}
+.status{position:absolute;bottom:91px;left:var(--edge);right:var(--edge);margin:0;text-align:right;color:var(--paper);font:italic 19px/1.25 Instrument Serif,Georgia,serif;letter-spacing:.03em;pointer-events:none;text-shadow:0 1px 10px #000}
+.daylight{--faint:#f2e8ec}
+.inspecting .intro{opacity:0}
+.inspecting .intro button{visibility:hidden}
+.inspecting .scene-label::before{display:none}
+.inspecting .gestures{color:var(--paper);text-shadow:0 1px 5px #171624,0 1px 3px #171624}
+@media (pointer:coarse){.desktop{display:none}.touch{display:inline}.tools button{min-height:44px;min-width:44px}}
+@media (max-width:700px) and (orientation:portrait){
+  .exhibit{min-height:550px}.frame{inset:9px}.masthead{top:20px}.wordmark{gap:7px;font-size:8px}.seal{width:30px;height:30px}.seal svg{width:17px;height:17px}.tools{gap:5px}.tools button{min-width:36px;min-height:38px;padding:0 8px}.tools button:first-child{padding:0 9px}.tools button span{display:none}
+  .intro{top:79px;transform:none;width:calc(100% - 2 * var(--edge))}.eyebrow{font-size:9px;margin-bottom:10px}h1{font-size:clamp(36px,11.7vw,70px)}h1 br{display:none}h1 em{display:inline;margin-left:.13em}.verse{font-size:11px;max-width:195px;line-height:1.4;margin:9px 0 13px}.mend{min-height:36px;padding:0 11px;gap:7px;font-size:11px}.mend .arrow{margin-left:5px}
+  .footer{bottom:20px;padding-top:10px;gap:8px}.gestures{gap:8px;flex-direction:column;font-size:10px}.gestures>span{gap:5px}.gestures svg{width:13px;height:13px}.status{bottom:74px;font-size:16px}.scene-label{padding:0 8px;min-height:34px;font-size:10px}.scene-label::before{width:12px;left:-13px}
+}
+@media (max-height:650px) and (orientation:landscape){.frame{inset:10px}.masthead{top:22px}.footer{bottom:19px}.intro{top:49%}h1{font-size:clamp(54px,7vw,83px)}.eyebrow{margin-bottom:13px}.verse{margin:13px 0 16px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+

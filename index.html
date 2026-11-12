@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101324">
+  <meta name="description" content="An interactive miniature workshop for mending moons and keeping fallen stars.">
+  <title>The Moon Repair Shop · 月亮修理铺</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23edc788' d='M23 3A13 13 0 1 0 29 23 12 12 0 0 1 23 3Z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="crescent" viewBox="0 0 24 24"><path d="M18.5 16.5A7.8 7.8 0 0 1 8.2 5.1a8.6 8.6 0 1 0 10.3 11.4Z"/><path d="M17.5 4v6m-3-3h6"/></symbol>
+    <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.8"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/></symbol>
+    <symbol id="sound" viewBox="0 0 24 24"><path d="M3 10h4l5-4v12l-5-4H3zM16 9a4 4 0 0 1 0 6m2-8a7 7 0 0 1 0 10"/></symbol>
+    <symbol id="mute" viewBox="0 0 24 24"><path d="M3 10h4l5-4v12l-5-4H3zm13 0 5 5m0-5-5 5"/></symbol>
+    <symbol id="reset-icon" viewBox="0 0 24 24"><path d="M5 9a8 8 0 1 1 .5 7M5 4v5h5"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 2c.8 6.2 3.8 9.2 10 10-6.2.8-9.2 3.8-10 10C11.2 15.8 8.2 12.8 2 12c6.2-.8 9.2-3.8 10-10Z"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></symbol>
+    <symbol id="orbit" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-27 12 12)"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="scroll" viewBox="0 0 24 24"><rect x="6.5" y="3" width="11" height="18" rx="5.5"/><path d="M12 7v4"/></symbol>
+    <symbol id="bottle" viewBox="0 0 24 24"><path d="M9 3h6v6l4 4v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6l4-4zm0 3h6m-5 10h4m-2-2v4"/></symbol>
+    <symbol id="door" viewBox="0 0 24 24"><path d="M6 21V9a6 6 0 1 1 12 0v12M4 21h16m-6-8h.1"/></symbol>
+  </svg>
+  <main class="exhibit">
+    <div class="stage" id="stage" role="region" aria-label="Interactive 3D diorama of the Moon Repair Shop"></div>
+    <div class="frame" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <div class="wordmark"><span class="seal"><svg><use href="#crescent"/></svg></span><span>LUNAR ATELIER</span></div>
+      <div class="tools" aria-label="Exhibit controls">
+        <button type="button" id="light" aria-pressed="false" aria-label="Switch to daylight" title="Switch to daylight"><svg><use href="#crescent"/></svg><span>Night</span></button>
+        <button type="button" id="audio" aria-pressed="false" aria-label="Enable ambient sound" title="Enable ambient sound"><svg><use href="#mute"/></svg></button>
+        <button type="button" id="reset" aria-label="Reset camera" title="Reset camera"><svg><use href="#reset-icon"/></svg></button>
+      </div>
+    </header>
+
+    <section class="intro" aria-labelledby="title">
+      <p class="eyebrow"><span></span><span lang="zh-CN">月亮修理铺</span></p>
+      <h1 id="title">The Moon<br><em>Repair Shop</em></h1>
+      <p class="verse">A little workshop above the clouds, where broken moons are stitched with starlight.</p>
+      <button class="mend" id="repair" type="button" disabled><svg><use href="#spark"/></svg><span>Mend the moon</span><svg class="arrow"><use href="#arrow"/></svg></button>
+    </section>
+
+    <button type="button" id="visit" class="scene-label" hidden><svg><use href="#door"/></svg><span>Look inside</span></button>
+    <p id="status" class="status" role="status">Opening the workshop…</p>
+
+    <footer class="footer">
+      <div class="gestures"><span><svg><use href="#orbit"/></svg><span class="desktop">Drag to orbit</span><span class="touch">Swipe to orbit</span></span><span><svg><use href="#scroll"/></svg><span class="desktop">Scroll to zoom</span><span class="touch">Pinch to zoom</span></span></div>
+      <button class="collection" type="button" id="collect" disabled aria-label="Collect a star" title="Collect a star"><svg><use href="#bottle"/></svg><span>Stardust</span><output id="count">0 / 7</output></button>
+    </footer>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
+
+
